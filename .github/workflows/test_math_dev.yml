@@ -4,29 +4,29 @@
 name: test_math_dev
 
 on:
-	push:
-		branches: [ dev ]
-	pull_request:
-		branches: [ dev ]
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
 
 env:
-	CARGO_TERM_COLOR: always
+  CARGO_TERM_COLOR: always
 
 jobs:
-	build:
+  build:
 
-		runs-on: ubuntu-latest
-		statergy:
-			matrix:
-				toolchain:
-					- stable
-					- beta
-					- nightly
+    runs-on: ubuntu-latest
+    statergy:
+      matrix:
+        toolchain:
+          - stable
+          - beta
+          - nightly
 
-		steps:
-		- uses: actions/checkout@v3
-		- run: rustup update ${{ matrix.toolchain }} && rustup default &{{ matrix.toolchain }}
-		- name: Run tests
-			run: cargo test --verbose
+    steps:
+    - uses: actions/checkout@v3
+    - run: rustup update ${{ matrix.toolchain }} && rustup default &{{ matrix.toolchain }}
+    - name: Run tests
+      run: cargo test --verbose
 
 
